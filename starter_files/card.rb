@@ -7,6 +7,10 @@ class Card
         @suit = suit
     end
 
+    def output_card
+        puts "The #{@rank} of #{@suit}"
+    end
+
     def value
         @value = case @rank
         when :A
@@ -14,11 +18,11 @@ class Card
         when 2..10
             @rank
         when :J
-            11
+            10
         when :Q
-            12
+            10
         when :K
-            13
+            10
         end
     end
 

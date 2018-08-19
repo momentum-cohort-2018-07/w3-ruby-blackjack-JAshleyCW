@@ -1,36 +1,33 @@
 require_relative "card"
 
 class Deck
+    # 'put' all 52 cards in the deck 
+    attr_accessor :deck, :ranks, :suits, :deal
 
-    attr_accessor :cards
+  def initialize
+      @ranks = [:A, 2, 3, 4, 5, 6, 7, 8, 9, 10, :J, :Q, :K]
+      @suits = [:clubs, :diamonds, :hearts, :spades]
+      @deck = []
+      @ranks.each do |rank|
+          @suits.map do |suit|
+              @deck << Card.new(rank, suit)
+          end
+      end
+  end
 
-    def initialize
-        # need 52 cards, from Card class, put in array cards []
-        # need to know rank and suit
-        @ranks = [:A, 2, 3, 4, 5, 6, 7, 8, 9, 10, :J, :Q, :K]
-        @suits = [:clubs, :diamonds, :hearts, :spades]
-        @cards = []
-        # for each rank and suit, loop through and push each to card array
-        @suits.each do |suit|
-            @ranks.each do |rank|
-                @cards << Card.new(rank, suit)
-            end
-        end
-    
-    def cards_left
-        @cards.length
-    end
+  def shuffle 
+  #  shuffle the cards
+      @deck.shuffle!
+  end
 
-    def draw
-        @cards.shift
-    end
+  def deal(num)
+  # deal 1-2 cards to player and dealer
+      num.times {@deck.shift.output_card}
+  end
 
-    def shuffle
-        @cards.shuffle!
-    end
-
-    end
-
-
-
+  def cards_left
+      @deck.length
+  end
 end
+
+
